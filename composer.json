@@ -1,12 +1,16 @@
 {
-  "name": "philippbaschke/acf-pro-installer",
-  "description": "An install helper for Advanced Custom Fields PRO",
+  "name": "alephsf/acf-pro-installer-docker-compose",
+  "description": "A composer install helper for Advanced Custom Fields PRO, loads env variables from docker-compose.yml",
   "type": "composer-plugin",
   "license": "MIT",
   "authors": [
     {
       "name": "Philipp Baschke",
       "email": "philipp@baschke.com"
+    },
+    {
+      "name": "Matt Glaser",
+      "email": "matt@alephsf.com"
     }
   ],
   "keywords": [
@@ -15,7 +19,8 @@
   "require": {
     "php": ">=5.5",
     "composer-plugin-api": "^1.0",
-    "vlucas/phpdotenv": "^2.2"
+    "vlucas/phpdotenv": "^2.2",
+    "mustangostang/spyc":"0.6.1"
   },
   "require-dev": {
     "composer/composer": "1.0.*",
@@ -24,10 +29,10 @@
     "satooshi/php-coveralls": "1.*"
   },
   "autoload": {
-    "psr-4": { "PhilippBaschke\\ACFProInstaller\\": "src/ACFProInstaller" }
+    "psr-4": { "AlephSF\\ACFProInstaller\\": "src/ACFProInstaller" }
   },
   "extra": {
-    "class": "PhilippBaschke\\ACFProInstaller\\Plugin"
+    "class": "AlephSF\\ACFProInstallerYaml\\Plugin"
   },
   "scripts": {
     "lint": "phpcs src tests --standard=PSR2",
