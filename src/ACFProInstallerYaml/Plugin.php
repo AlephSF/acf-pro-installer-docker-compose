@@ -12,6 +12,8 @@ use Composer\Plugin\PreFileDownloadEvent;
 use Dotenv\Dotenv;
 use AlephSF\ACFProInstallerYaml\Exceptions\MissingKeyException;
 
+
+
 /**
  * A composer plugin that makes installing ACF PRO possible
  *
@@ -245,6 +247,10 @@ class Plugin implements PluginInterface, EventSubscriberInterface
         if (file_exists(getcwd().DIRECTORY_SEPARATOR.'.env')) {
             $dotenv = new Dotenv(getcwd());
             $dotenv->load();
+        }
+        if (file_exists(getcwd().DIRECTORY_SEPARATOR.'docker-compose.yaml')) {
+          $Data = Spyc::YAMLLoad('docker-compose.yaml');
+          error_log(print_r($Data, true));
         }
     }
 
