@@ -1,4 +1,4 @@
-<?php namespace PhilippBaschke\ACFProInstaller\Exceptions;
+<?php namespace AlephSF\ACFProInstallerYaml\Exceptions;
 
 /**
  * Exception thrown if the ACF PRO key is not available in the environment

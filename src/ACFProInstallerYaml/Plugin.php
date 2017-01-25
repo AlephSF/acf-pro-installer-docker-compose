@@ -244,13 +244,20 @@ class Plugin implements PluginInterface, EventSubscriberInterface
      */
     protected function loadDotEnv()
     {
-        if (file_exists(getcwd().DIRECTORY_SEPARATOR.'.env')) {
-            $dotenv = new Dotenv(getcwd());
-            $dotenv->load();
-        }
-        if (file_exists(getcwd().DIRECTORY_SEPARATOR.'docker-compose.yaml')) {
-          $Data = Spyc::YAMLLoad('docker-compose.yaml');
-          error_log(print_r($Data, true));
+        // if (file_exists(getcwd().DIRECTORY_SEPARATOR.'.env')) {
+        //     $dotenv = new Dotenv(getcwd());
+        //     $dotenv->load();
+        // }
+        
+        /* TODO: Make this work for all vars in the YAML file in case we wanna do other stuff with them */
+        if (file_exists(getcwd().DIRECTORY_SEPARATOR.'docker-compose.yml')) {
+          require_once 'vendor/mustangostang/spyc/Spyc.php';
+          $data = spyc_load_file('docker-compose.yml');
+          $wp_env = $data['services']['wordpress']['environment'];
+          $acf = getenv('ACF_PRO_KEY');
+          if( !$acf ){
+            putenv('ACF_PRO_KEY=' . $wp_env['ACF_PRO_KEY']);
+          }
         }
     }
 
